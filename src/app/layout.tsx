@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { IntersectionProvider } from '@/contexts/intersectionContext'
 import ScrollToTop from '@/components/common/scroll-to-up'
+import { ThemeProvider } from '@/components/common/theme/theme-provider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,8 +29,10 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <IntersectionProvider>
-          {children}
-          <ScrollToTop />
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+            {children}
+            <ScrollToTop />
+          </ThemeProvider>
         </IntersectionProvider>
       </body>
     </html>
